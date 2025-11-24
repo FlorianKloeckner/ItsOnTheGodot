@@ -1,9 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://bmietxrnywn6g"]
 
 [ext_resource type="Texture2D" uid="uid://q8q3ffpi1g8c" path="res://Assets/Sprites/woman-walk.png" id="1_dajvb"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pa7me"]
-size = Vector2(23, 42)
+[ext_resource type="PackedScene" uid="uid://b2f486vxdlrmk" path="res://Scenes/Customer.tscn" id="1_demkf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bsfu0"]
 atlas = ExtResource("1_dajvb")
@@ -55,15 +53,14 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
-texture_filter = 1
+[node name="Node2D" type="Node2D"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-texture_filter = 1
-position = Vector2(-1.5, 2)
-shape = SubResource("RectangleShape2D_pa7me")
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_demkf")]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 texture_filter = 1
+position = Vector2(0, -23)
 sprite_frames = SubResource("SpriteFrames_nr45i")
-frame_progress = 0.317764
+autoplay = "default"
+frame = 5
+frame_progress = 1.0

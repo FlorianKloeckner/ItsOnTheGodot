@@ -1,5 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://dmvs7ky14n74g"]
 
+[ext_resource type="PackedScene" uid="uid://b2f486vxdlrmk" path="res://Scenes/Customer.tscn" id="1_3bx3h"]
 [ext_resource type="Texture2D" uid="uid://bq3vtjxnr8r1t" path="res://Assets/Sprites/bearded-walk.png" id="1_5mtpy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8by8q"]
@@ -52,16 +53,14 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kmrot"]
-size = Vector2(20, 44)
+[node name="Node2D" type="Node2D"]
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_3bx3h")]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 texture_filter = 1
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, -22)
 sprite_frames = SubResource("SpriteFrames_k2lts")
+autoplay = "default"
 frame_progress = 0.586625
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 2)
-shape = SubResource("RectangleShape2D_kmrot")
+offset = Vector2(0, -1.5)
