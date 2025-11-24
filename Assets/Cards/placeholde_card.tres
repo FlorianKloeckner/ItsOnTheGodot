@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://cv2khbbs37f8p"]
+
+[ext_resource type="Script" uid="uid://dupaig4ubk27x" path="res://Scripts/generic_cards.gd" id="1_nc3av"]
+
+[resource]
+script = ExtResource("1_nc3av")
+name = "Placeholder"
+desc = "If you see this, we made a big mistake, or you are a developer"
+eff_1 = "+ Popularity"
+eff_2 = "+ Money Per Person"
+eff_3 = "- Risk"
+money_mod = 0
+pop_mod = 1000
+rent_mod = 0
+risk_mod = -1000
+mpp_mod = 1000
+rarity = 0
+metadata/_custom_type_script = "uid://dupaig4ubk27x"
