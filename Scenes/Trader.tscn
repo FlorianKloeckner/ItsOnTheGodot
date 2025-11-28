@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://b6rlytk7xqi6s"]
+[gd_scene load_steps=25 format=3 uid="uid://c55l4xchtji16"]
 
 [ext_resource type="Texture2D" uid="uid://bhx8bh17kr6ey" path="res://Assets/Sprites/dealer-walk.png" id="1_eete8"]
 [ext_resource type="Texture2D" uid="uid://cvymqh6gn5by1" path="res://Assets/Sprites/dealer-idle.png" id="1_i7u4a"]
@@ -169,6 +169,4 @@ shape = SubResource("RectangleShape2D_4k5qp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_4blsa")
-animation = &"idle"
-frame = 2
-frame_progress = 0.805206
+animation = &"walk"

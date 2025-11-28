@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ctk7uy4qxbcoh"]
+[gd_scene load_steps=16 format=3 uid="uid://ctk7uy4qxbcoh"]
 
 [ext_resource type="Script" uid="uid://dxrbwoxfsr821" path="res://Scripts/main_manager.gd" id="1_f140w"]
 [ext_resource type="Texture2D" uid="uid://bnr8mueckm2d2" path="res://Assets/Sprites/World/casion_background.png" id="1_h0au7"]
@@ -12,6 +12,7 @@
 [ext_resource type="FontFile" uid="uid://b3hcvbyngee2u" path="res://Assets/Fonts/ThaleahFat_TTF.ttf" id="9_6t1o7"]
 [ext_resource type="Texture2D" uid="uid://0jpjqo4vqm6x" path="res://Assets/Sprites/UI/money_per_customer_sprite.png" id="9_xb4mg"]
 [ext_resource type="Texture2D" uid="uid://b8hvcls7hnvdc" path="res://Assets/Sprites/UI/popularity_sprite.png" id="10_6t1o7"]
+[ext_resource type="Script" uid="uid://hi1ur2ktmaq8" path="res://Scenes/trader_manager.gd" id="14_5qxwa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h1cmg"]
 size = Vector2(551, 32)
@@ -111,5 +112,20 @@ zoom = Vector2(1.15, 1.15)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 
+[node name="TraderManager" type="Node2D" parent="."]
+script = ExtResource("14_5qxwa")
+
+[node name="TraderHitbox" type="Area2D" parent="TraderManager"]
+position = Vector2(59, 41)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TraderManager/TraderHitbox"]
+position = Vector2(-11, 0)
+shape = SubResource("RectangleShape2D_bq88l")
+
+[node name="TraderSpawnLocation" type="Node2D" parent="TraderManager"]
+position = Vector2(275, 20)
+
 [connection signal="customer_entered" from="NPCSpawner" to="." method="_on_npc_spawner_customer_entered"]
 [connection signal="body_entered" from="NPCSpawner/EntranceHitbox" to="NPCSpawner" method="_on_entrance_hitbox_body_entered"]
+[connection signal="body_entered" from="TraderManager/TraderHitbox" to="TraderManager" method="_on_trader_hitbox_body_entered"]
