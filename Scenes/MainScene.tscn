@@ -95,7 +95,7 @@ theme_override_font_sizes/font_size = 16
 text = "1000"
 
 [node name="NPCSpawner" type="Node2D" parent="."]
-position = Vector2(-170, 25)
+position = Vector2(-170, 41)
 script = ExtResource("7_eyu76")
 
 [node name="EntranceHitbox" type="Area2D" parent="NPCSpawner"]
