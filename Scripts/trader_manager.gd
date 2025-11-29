@@ -1,4 +1,7 @@
 extends Node2D
+
+signal trader_arrived
+
 const TRAIDER_JOE = preload("res://Scenes/TraiderJoe.tscn")
 var trader
 
@@ -14,3 +17,4 @@ func instantiate_trader():
 #make trader move
 func _on_trader_hitbox_body_entered(body: Node2D) -> void:
 	trader.drop_sack()
+	trader_arrived.emit()

@@ -15,7 +15,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	print(Engine.get_frames_per_second())
+	pass
 
 
 func set_money_per_customer(amount: int):
@@ -42,7 +42,25 @@ func set_money(amount: int):
 func get_money():
 	return money
 	
+func show_card_screen():
+	$Control.visible = true
+
+func hide_card_screen():
+	$Control.visible = false
+	
 func _on_npc_spawner_customer_entered() -> void:
+	cash_customer()
+
+func cash_customer():
 	add_money(money_per_customer)
 	$AudioStreamPlayer2D.stream = SFX_COIN_DOUBLE_3
 	$AudioStreamPlayer2D.play()
+
+		
+
+func _on_trader_manager_trader_arrived() -> void:
+	$NPCSpawner.toggle_spawning()
+	await get_tree().create_timer(1.5).timeout
+	#gradually turn all of the npcs to coin and stop spawning, then show screen
+	
+	show_card_screen()
