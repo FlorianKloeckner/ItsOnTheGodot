@@ -37,9 +37,14 @@ func spawn_npc():
 
 func set_popularity(amount: int):
 	popularity = amount
+
+func freeze_customers():
+	for child in get_children():
+		if child.get_class() == "Node2D":
+			child.get_child(0).set_speed(0)
 	
 
 
 func _on_entrance_hitbox_body_entered(body: Node2D) -> void:
-	body.queue_free()
+	body.get_parent().queue_free()
 	emit_signal("customer_entered")

@@ -1,3 +1,5 @@
+#TODO FIX ugly refernce to customer.set_speed
+
 extends Node2D
 var money: int = 1000
 var popularity: int = 70
@@ -6,6 +8,12 @@ var money_per_customer: int = 10
 
 #-------Sounds-----------
 const SFX_COIN_DOUBLE_3 = preload("res://Assets/Sounds/sfx_coin_double3.wav")
+
+#-------Managers---------
+@onready var npc_spawner: Node2D = $NPCSpawner
+@onready var trader_manager: Node2D = $TraderManager
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -25,7 +33,7 @@ func set_money_per_customer(amount: int):
 	
 func set_popularity(amount: int):
 	popularity = amount
-	$NPCSpawner.set_popularity(amount)
+	npc_spawner.set_popularity(amount)
 	$"Background/Info Sprites/PopularitySprite/Label".text = str(popularity)
 
 #adds money, if amount is negative, it subtracts
@@ -59,7 +67,13 @@ func cash_customer():
 		
 
 func _on_trader_manager_trader_arrived() -> void:
-	$NPCSpawner.toggle_spawning()
+	npc_spawner.toggle_spawning()
+	npc_spawner.freeze_customers()
+	for child in $NPCSpawner.get_children():
+		if child.get_class() == "Node2D":
+			cash_customer()
+			await get_tree().create_timer(0.03).timeout
+			child.queue_free()
 	await get_tree().create_timer(1.5).timeout
 	#gradually turn all of the npcs to coin and stop spawning, then show screen
 	
